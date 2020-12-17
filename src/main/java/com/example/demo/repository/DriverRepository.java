@@ -1,0 +1,16 @@
+package com.example.demo.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import com.example.demo.entity.Driver;
+
+public interface DriverRepository extends JpaRepository<Driver,Integer>{
+	 @Query("SELECT e FROM Driver e WHERE e.name LIKE %:key%")
+	 public List<Driver> findNameLike(@Param("key") String keyword); 
+	
+}
